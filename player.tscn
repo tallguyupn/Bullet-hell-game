@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cuvk5rm6ccu72"]
+
+[ext_resource type="Texture2D" uid="uid://c3e1gmflvwid2" path="res://Sprites/Square/Square-0001.png" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bcqxcb5c02me" path="res://Sprites/Square/Square-0007.png" id="2_i3pqv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ckepc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_onrkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckepc"]
+size = Vector2(94, 95)
+
+[node name="Player" type="Area2D" unique_id=1482051478]
+position = Vector2(594, 584)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2110599085]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ckepc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1639968332]
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_ckepc")
