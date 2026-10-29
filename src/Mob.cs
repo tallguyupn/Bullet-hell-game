@@ -33,14 +33,14 @@ public partial class Mob : RigidBody2D
 
     private void ShootProjectile()
     {
-        var projectile = ProjectileScene.Instantiate<Projectile>();
+       var projectile = ProjectileScene.Instantiate<Projectile>();
+
 
         projectile.GlobalPosition = FirePoint.GlobalPosition;
-
-        // Fire in the enemy's facing direction
-        projectile.Direction = Transform.X.Normalized();
+        projectile.Direction = Vector2.Down;
 
         GetTree().CurrentScene.AddChild(projectile);
+        GD.Print(projectile.Direction);
     }
     public override void _Process(double delta)
     {
@@ -48,6 +48,7 @@ public partial class Mob : RigidBody2D
      {
         _=BulletHellTest();
      }
+
     }
     private async Task BulletHellTest()
     {
@@ -62,4 +63,6 @@ public partial class Mob : RigidBody2D
     }
 
     }
+
+
 }
