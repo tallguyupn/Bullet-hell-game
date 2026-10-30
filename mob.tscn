@@ -18,16 +18,19 @@ _data = {
 [node name="Mob" type="RigidBody2D" unique_id=1613022772 node_paths=PackedStringArray("FirePoint")]
 position = Vector2(4, 0)
 gravity_scale = 0.0
+lock_rotation = true
+freeze = true
 script = ExtResource("1_nokgg")
 ProjectileScene = ExtResource("2_p11y5")
 FirePoint = NodePath("FirePoint")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641454573]
-position = Vector2(796.25, 149.5)
+position = Vector2(933, 152)
 scale = Vector2(10.359376, 9.09375)
 texture = ExtResource("2_ubaqv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1154688469]
+visible = false
 position = Vector2(796, 145)
 shape = SubResource("RectangleShape2D_ckbex")
 
@@ -35,4 +38,5 @@ shape = SubResource("RectangleShape2D_ckbex")
 libraries/ = SubResource("AnimationLibrary_p11y5")
 
 [node name="FirePoint" type="Marker2D" parent="." unique_id=224175814]
-position = Vector2(801, 291)
+position = Vector2(934, 278)
+rotation = 1.5707964

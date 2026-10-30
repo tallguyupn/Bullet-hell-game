@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://d0yahqxd7se2m"]
+
+[ext_resource type="Script" uid="uid://bqxshtnvx2g22" path="res://src/Projectile.cs" id="1_e7peq"]
+[ext_resource type="Texture2D" uid="uid://dxfwhd52a6mkn" path="res://Sprites/Rhombus/Rhombus-0002.png" id="2_1cf02"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ckepc"]
+
+[node name="Area2D" type="Area2D" unique_id=2079116479]
+script = ExtResource("1_e7peq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2095007812]
+position = Vector2(251, 82)
+rotation = -1.5463617
+texture = ExtResource("2_1cf02")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1054317320]
+position = Vector2(251, 83)
+shape = SubResource("CapsuleShape2D_ckepc")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
