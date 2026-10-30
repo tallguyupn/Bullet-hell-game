@@ -1,6 +1,5 @@
 using Godot;
-using System;
-
+using System.Threading.Tasks;
 public partial class Player : Area2D {
 	[Export]
 	public int Speed { get; set; } = 400; //Speed of the player in pixels per second
