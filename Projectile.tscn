@@ -6,6 +6,7 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ckepc"]
 
 [node name="Area2D" type="Area2D" unique_id=2079116479]
+collision_layer = 2
 script = ExtResource("1_e7peq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2095007812]

@@ -8,10 +8,11 @@ public partial class Projectile : Area2D
     [Export]
     public float Lifetime = 3f;
 
-    public Vector2 Direction = Vector2.Right;
+    public Vector2 Direction = Vector2.Down;
 
     public override void _Ready()
     {
+        AreaEntered += OnAreaEntered;
         // Automatically remove the projectile after a few seconds
         GetTree().CreateTimer(Lifetime).Timeout += QueueFree;
     }
@@ -21,11 +22,13 @@ public partial class Projectile : Area2D
         GlobalPosition += Direction * Speed * (float)delta;
     }
 
-    private void OnBodyEntered(Node2D body)
+    private void OnAreaEntered(Area2D area)
     {
-        // Optional: damage player here
-
-        QueueFree();
+        if (area.IsInGroup("Player"))
+        {
+            GD.Print("Player hit!");
+            QueueFree();
+        }
     }
 	private void SpawnProjectile()
 {
