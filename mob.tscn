@@ -3,40 +3,50 @@
 [ext_resource type="Script" uid="uid://rhrv1c4hue1r" path="res://src/Mob.cs" id="1_nokgg"]
 [ext_resource type="PackedScene" uid="uid://d0yahqxd7se2m" path="res://Projectile.tscn" id="2_p11y5"]
 [ext_resource type="Texture2D" uid="uid://17cfc4v1vctf" path="res://Sprites/Square/Square-0005.png" id="2_ubaqv"]
+[ext_resource type="Texture2D" uid="uid://ckuy1hthcbpb3" path="res://Sprites/Square/Square-0002.png" id="4_p11y5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ckepc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ubaqv")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("4_p11y5")
+}],
+"loop": 0,
+"name": &"shoot",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckbex"]
 size = Vector2(324, 297.5)
 
-[sub_resource type="Animation" id="Animation_ubaqv"]
-resource_name = "shoot"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_p11y5"]
-_data = {
-&"shoot": SubResource("Animation_ubaqv")
-}
-
-[node name="Mob" type="RigidBody2D" unique_id=1613022772 node_paths=PackedStringArray("FirePoint")]
-position = Vector2(4, 0)
+[node name="Mob" type="RigidBody2D" unique_id=1613022772 node_paths=PackedStringArray("FirePoint", "_sprite")]
+z_index = 10
 gravity_scale = 0.0
 lock_rotation = true
 freeze = true
 script = ExtResource("1_nokgg")
 ProjectileScene = ExtResource("2_p11y5")
 FirePoint = NodePath("FirePoint")
+_sprite = NodePath("AnimatedSprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641454573]
-position = Vector2(933, 152)
-scale = Vector2(10.359376, 9.09375)
-texture = ExtResource("2_ubaqv")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1924345399]
+position = Vector2(1004, 206.75002)
+scale = Vector2(10.34375, 9.390626)
+sprite_frames = SubResource("SpriteFrames_ckepc")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1154688469]
-visible = false
-position = Vector2(796, 145)
+position = Vector2(1002, 205)
 shape = SubResource("RectangleShape2D_ckbex")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2096735348]
-libraries/ = SubResource("AnimationLibrary_p11y5")
-
 [node name="FirePoint" type="Marker2D" parent="." unique_id=224175814]
-position = Vector2(934, 278)
+position = Vector2(845, 358)
 rotation = 1.5707964
