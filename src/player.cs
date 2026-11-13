@@ -1,13 +1,20 @@
 using Godot;
 using System.Threading.Tasks;
 public partial class Player : Area2D {
-	[Export]
-	public int Speed { get; set; } = 400; //Speed of the player in pixels per second
+	[Export] public int Speed { get; set; } = 400; //Speed of the player in pixels per second
+	[Export] public int MaxHealth = 3;
 	
 	public Vector2 ScreenSize; //Size of the game window
 
+	private int _health;
+    private Label _healthLabel;
+
 	public override void _Ready() {
- 	   ScreenSize = GetViewportRect().Size;
+	   ScreenSize = GetViewportRect().Size;
+	    _health = MaxHealth;
+
+		_healthLabel = GetNode<Label>("../CanvasLayer/HealthLabel");  
+		UpdateHealthUI();
 	}
 
 	public override void _Process(double delta) {
@@ -46,5 +53,30 @@ public partial class Player : Area2D {
  	   		y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
 		);
 	}
+	  private void UpdateHealthUI()
+    {
+        _healthLabel.Text = $"Health: {_health}";
+    }
+
+    public void TakeDamage(int damage)
+    {
+        _health -= damage;
+
+        UpdateHealthUI();
+
+        GD.Print($"Player health: {_health}");
+
+        if (_health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        GD.Print("Player died!");
+
+        GetTree().ReloadCurrentScene();
+    }
 }
 

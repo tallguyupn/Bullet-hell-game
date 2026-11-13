@@ -24,11 +24,17 @@ public partial class Projectile : Area2D
 
     private void OnAreaEntered(Area2D area)
     {
-        if (area.IsInGroup("Player"))
+         if (area.IsInGroup("Player"))
+    {
+        Player player = area as Player;
+
+        if (player != null)
         {
-            GD.Print("Player hit!");
-            QueueFree();
+            player.TakeDamage(1);
         }
+
+        QueueFree();
+    }
     }
 	private void SpawnProjectile()
 {

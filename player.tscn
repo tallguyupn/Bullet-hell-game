@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cuvk5rm6ccu72"]
 
-[ext_resource type="Script" uid="uid://gnvi0jq7lsq1" path="res://src/player.cs" id="1_i3pqv"]
+[ext_resource type="Script" uid="uid://cgv3t2atm2xwm" path="res://src/Player.cs" id="1_kne1u"]
 [ext_resource type="Texture2D" uid="uid://c3e1gmflvwid2" path="res://Sprites/Square/Square-0001.png" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bcqxcb5c02me" path="res://Sprites/Square/Square-0007.png" id="2_i3pqv"]
 
@@ -21,9 +21,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckepc"]
 size = Vector2(94, 95)
 
-[node name="Player" type="Area2D" unique_id=1482051478]
+[node name="Player" type="Area2D" unique_id=1482051478 groups=["Player"]]
 position = Vector2(961, 990)
-script = ExtResource("1_i3pqv")
+script = ExtResource("1_kne1u")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2110599085]
