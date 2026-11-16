@@ -3,11 +3,13 @@ using System.Threading.Tasks;
 public partial class Player : Area2D {
 	[Export] public int Speed { get; set; } = 400; //Speed of the player in pixels per second
 	[Export] public int MaxHealth = 3;
-	
 	public Vector2 ScreenSize; //Size of the game window
 
 	private int _health;
     private Label _healthLabel;
+
+	private PackedScene projectileScene =
+        GD.Load<PackedScene>("res://Projectile.tscn");
 
 	public override void _Ready() {
 	   ScreenSize = GetViewportRect().Size;
@@ -52,6 +54,11 @@ public partial class Player : Area2D {
   	  		x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
  	   		y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
 		);
+
+		if (Input.IsActionJustPressed("shoot"))
+		{
+			Shoot();
+		}
 	}
 	  private void UpdateHealthUI()
     {
@@ -77,6 +84,19 @@ public partial class Player : Area2D {
         GD.Print("Player died!");
 
         GetTree().ReloadCurrentScene();
+    }
+	  private void Shoot()
+    {
+		var spawnPoint = GetNode<Node2D>("ProjectileSpawn");
+		Projectile projectile =
+        projectileScene.Instantiate<Projectile>();
+
+    	projectile.GlobalPosition = spawnPoint.GlobalPosition; 
+		projectile.Direction = Vector2.Up; // <- important
+
+
+    	GetParent().AddChild(projectile);
+
     }
 }
 

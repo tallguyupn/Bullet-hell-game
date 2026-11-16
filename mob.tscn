@@ -47,5 +47,5 @@ position = Vector2(1002, 205)
 shape = SubResource("RectangleShape2D_ckbex")
 
 [node name="FirePoint" type="Marker2D" parent="." unique_id=224175814]
-position = Vector2(845, 358)
+position = Vector2(735, 365)
 rotation = 1.5707964

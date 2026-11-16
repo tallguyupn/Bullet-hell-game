@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://cuvk5rm6ccu72"]
+[gd_scene format=3 uid="uid://bl87maolbmk4o"]
 
-[ext_resource type="Script" uid="uid://cgv3t2atm2xwm" path="res://src/Player.cs" id="1_kne1u"]
+[ext_resource type="Script" uid="uid://bugtogmatn1cx" path="res://src/Player.cs" id="1_kne1u"]
 [ext_resource type="Texture2D" uid="uid://c3e1gmflvwid2" path="res://Sprites/Square/Square-0001.png" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bcqxcb5c02me" path="res://Sprites/Square/Square-0007.png" id="2_i3pqv"]
 
@@ -22,9 +22,8 @@ animations = [{
 size = Vector2(94, 95)
 
 [node name="Player" type="Area2D" unique_id=1482051478 groups=["Player"]]
-position = Vector2(961, 990)
+position = Vector2(948, 1015)
 script = ExtResource("1_kne1u")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2110599085]
 scale = Vector2(3, 3)
@@ -32,5 +31,8 @@ sprite_frames = SubResource("SpriteFrames_ckepc")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1639968332]
-position = Vector2(-1, 0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ckepc")
+
+[node name="ProjectileSpawn" type="Marker2D" parent="." unique_id=1000088462]
+position = Vector2(-91, -39)

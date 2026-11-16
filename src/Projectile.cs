@@ -36,8 +36,4 @@ public partial class Projectile : Area2D
         QueueFree();
     }
     }
-	private void SpawnProjectile()
-{
-	GD.Print("Projectile spawned");
-}
 }
