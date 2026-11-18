@@ -35,4 +35,4 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ckepc")
 
 [node name="ProjectileSpawn" type="Marker2D" parent="." unique_id=1000088462]
-position = Vector2(-91, -39)
+position = Vector2(-271, -200)

@@ -93,7 +93,7 @@ public partial class Player : Area2D {
 
     	projectile.GlobalPosition = spawnPoint.GlobalPosition; 
 		projectile.Direction = Vector2.Up; // <- important
-
+		projectile.BulletOwner = Projectile.ProjectileOwner.Player;
 
     	GetParent().AddChild(projectile);
 

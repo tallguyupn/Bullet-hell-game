@@ -8,6 +8,7 @@ public partial class Mob : RigidBody2D
     [Export] private AnimatedSprite2D _sprite;
     [Export] public float MoveSpeed = 100f;
 
+    public int Health = 5;
     private float direction = 1f;
     private float moveTimer = 0f;
     private float shootTimer = 0f;
@@ -84,6 +85,7 @@ public partial class Mob : RigidBody2D
 
         projectile.GlobalPosition = FirePoint.GlobalPosition;
         projectile.Direction = Vector2.Down;
+        projectile.BulletOwner = Projectile.ProjectileOwner.Enemy;
 
         GetTree().CurrentScene.AddChild(projectile);
     } 
@@ -92,6 +94,15 @@ public partial class Mob : RigidBody2D
      if (_sprite.Animation == "shoot")
          {
          _sprite.Play("idle");
+        }
+    }
+     public void TakeDamage(int amount)
+    {
+        Health -= amount;
+
+        if (Health <= 0)
+        {
+            QueueFree();
         }
     }
 

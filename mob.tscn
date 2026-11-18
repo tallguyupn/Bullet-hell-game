@@ -42,10 +42,13 @@ scale = Vector2(10.34375, 9.390626)
 sprite_frames = SubResource("SpriteFrames_ckepc")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1154688469]
-position = Vector2(1002, 205)
-shape = SubResource("RectangleShape2D_ckbex")
-
 [node name="FirePoint" type="Marker2D" parent="." unique_id=224175814]
 position = Vector2(735, 365)
 rotation = 1.5707964
+
+[node name="Area2D" type="Area2D" parent="." unique_id=732892974 groups=["Enemy"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1154688469]
+position = Vector2(1002, 205)
+shape = SubResource("RectangleShape2D_ckbex")

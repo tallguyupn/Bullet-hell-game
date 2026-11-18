@@ -10,6 +10,13 @@ public partial class Projectile : Area2D
 
     public Vector2 Direction = Vector2.Down;
 
+    public enum ProjectileOwner
+    {
+        Player,
+        Enemy
+    }
+
+    public ProjectileOwner BulletOwner;
     public override void _Ready()
     {
         AreaEntered += OnAreaEntered;
@@ -22,18 +29,38 @@ public partial class Projectile : Area2D
         GlobalPosition += Direction * Speed * (float)delta;
     }
 
-    private void OnAreaEntered(Area2D area)
+       private void OnAreaEntered(Area2D area)
     {
-         if (area.IsInGroup("Player"))
+        //debug
+          GD.Print("HIT: " + area.Name);
+          if (BulletOwner == ProjectileOwner.Player)
     {
-        Player player = area as Player;
-
-        if (player != null)
+        GD.Print("Player bullet collided");
+    }
+        // Enemy bullet hits player
+        if (BulletOwner == ProjectileOwner.Enemy &&
+            area.IsInGroup("Player"))
         {
-            player.TakeDamage(1);
+            Player player = area as Player;
+
+            if (player != null)
+                player.TakeDamage(1);
+
+            QueueFree();
         }
 
-        QueueFree();
-    }
+        // Player bullet hits enemy
+        if (BulletOwner == ProjectileOwner.Player &&
+            area.IsInGroup("Enemy"))
+        {
+            //debug
+            GD.Print("Enemy group detected");
+             var mob = area.GetParent() as Mob;
+
+            if (mob != null)
+                mob.TakeDamage(1);
+
+            QueueFree();
+        }
     }
 }
