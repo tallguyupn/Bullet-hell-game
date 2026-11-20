@@ -3,10 +3,13 @@ using System.Threading.Tasks;
 public partial class Player : Area2D {
 	[Export] public int Speed { get; set; } = 400; //Speed of the player in pixels per second
 	[Export] public int MaxHealth = 3;
+	[Export] public float InvincibilityTime = 1.0f;
 	public Vector2 ScreenSize; //Size of the game window
 
 	private int _health;
     private Label _healthLabel;
+	private bool _invincible = false;
+	public bool CanControl = true;
 
 	private PackedScene projectileScene =
         GD.Load<PackedScene>("res://Projectile.tscn");
@@ -20,8 +23,10 @@ public partial class Player : Area2D {
 	}
 
 	public override void _Process(double delta) {
- 
  	   var velocity = Vector2.Zero; // The player's movement vector.
+
+    	if (!CanControl)
+        	return;
 
 	    if (Input.IsActionPressed("move_right")) {
  	       velocity.X += 1;
@@ -65,8 +70,10 @@ public partial class Player : Area2D {
         _healthLabel.Text = $"Health: {_health}";
     }
 
-    public void TakeDamage(int damage)
+    public async void TakeDamage(int damage)
     {
+		if (_invincible)
+            return;
         _health -= damage;
 
         UpdateHealthUI();
@@ -76,7 +83,20 @@ public partial class Player : Area2D {
         if (_health <= 0)
         {
             Die();
+			return;
         }
+		 _invincible = true;
+
+		 for (int i = 0; i < 10; i++)
+			{
+			    Visible = !Visible;
+			    await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
+			}
+			Visible = true;
+
+ 		await ToSignal(GetTree().CreateTimer(InvincibilityTime), SceneTreeTimer.SignalName.Timeout);
+
+        _invincible = false;
     }
 
     private void Die()

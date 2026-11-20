@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cct2eud3q3ppy"]
+
+[ext_resource type="Script" uid="uid://ct1r4dkbwcomc" path="res://src/MainMenu.cs" id="1_06t4h"]
+[ext_resource type="AudioStream" uid="uid://vonnm0yw7dpg" path="res://music/Main_Menu_Real.mp3" id="2_7vrkn"]
+
+[node name="MainMenu" type="Control" unique_id=1734847243]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_06t4h")
+
+[node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="." unique_id=1807615951]
+stream = ExtResource("2_7vrkn")
+volume_db = 10.478
+autoplay = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=878438438]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.624
+anchor_top = -2.486
+anchor_right = -2.624
+anchor_bottom = -2.486
+offset_left = 652.96
+offset_top = 118.44
+offset_right = 1652.96
+offset_bottom = 1149.44
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=757947735]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1055214893]
+custom_minimum_size = Vector2(1000, 500)
+layout_mode = 2
+theme_override_font_sizes/font_size = 170
+action_mode = 0
+text = "Start"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=413409153]
+custom_minimum_size = Vector2(800, 500)
+layout_mode = 2
+theme_override_font_sizes/font_size = 170
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

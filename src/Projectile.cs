@@ -31,12 +31,6 @@ public partial class Projectile : Area2D
 
        private void OnAreaEntered(Area2D area)
     {
-        //debug
-          GD.Print("HIT: " + area.Name);
-          if (BulletOwner == ProjectileOwner.Player)
-    {
-        GD.Print("Player bullet collided");
-    }
         // Enemy bullet hits player
         if (BulletOwner == ProjectileOwner.Enemy &&
             area.IsInGroup("Player"))
@@ -53,8 +47,6 @@ public partial class Projectile : Area2D
         if (BulletOwner == ProjectileOwner.Player &&
             area.IsInGroup("Enemy"))
         {
-            //debug
-            GD.Print("Enemy group detected");
              var mob = area.GetParent() as Mob;
 
             if (mob != null)

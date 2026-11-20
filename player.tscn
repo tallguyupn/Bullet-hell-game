@@ -1,38 +1,40 @@
 [gd_scene format=3 uid="uid://bl87maolbmk4o"]
 
 [ext_resource type="Script" uid="uid://bugtogmatn1cx" path="res://src/Player.cs" id="1_kne1u"]
-[ext_resource type="Texture2D" uid="uid://c3e1gmflvwid2" path="res://Sprites/Square/Square-0001.png" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://bcqxcb5c02me" path="res://Sprites/Square/Square-0007.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://cfvddxq45xi37" path="res://Sprites/Player/image0(1).png" id="2_kne1u"]
+[ext_resource type="Texture2D" uid="uid://baxctssnmul7o" path="res://Sprites/Player/image1.png" id="3_e80uo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ckepc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_onrkg")
+"texture": ExtResource("2_kne1u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_i3pqv")
+"texture": ExtResource("3_e80uo")
 }],
 "loop": 1,
 "name": &"walk",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckepc"]
-size = Vector2(94, 95)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iex0n"]
+radius = 48.0
+height = 170.0
 
 [node name="Player" type="Area2D" unique_id=1482051478 groups=["Player"]]
 position = Vector2(948, 1015)
 script = ExtResource("1_kne1u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2110599085]
-scale = Vector2(3, 3)
+position = Vector2(2, -30.00002)
+scale = Vector2(0.39355475, 0.3564453)
 sprite_frames = SubResource("SpriteFrames_ckepc")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1639968332]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_ckepc")
+position = Vector2(3, -23)
+shape = SubResource("CapsuleShape2D_iex0n")
 
 [node name="ProjectileSpawn" type="Marker2D" parent="." unique_id=1000088462]
 position = Vector2(-271, -200)

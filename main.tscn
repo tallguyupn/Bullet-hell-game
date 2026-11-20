@@ -1,21 +1,81 @@
 [gd_scene format=3 uid="uid://b3cacofv0w78w"]
 
-[ext_resource type="PackedScene" uid="uid://cuvk5rm6ccu72" path="res://Player.tscn" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bl87maolbmk4o" path="res://Player.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://c51adji2c8d3k" path="res://src/Main.cs" id="1_h2yge"]
+[ext_resource type="AudioStream" uid="uid://bos77g1xghqu0" path="res://music/Main_Menu.mp3" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://cjroij4pmf7of" path="res://mob.tscn" id="2_h2yge"]
+[ext_resource type="AudioStream" uid="uid://dscd3irclnn33" path="res://music/Gameplay.mp3" id="5_lquwl"]
+
+[sub_resource type="Animation" id="Animation_h2yge"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GetReadyLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1bvp3"]
+resource_name = "get_ready"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GetReadyLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 1, 2.12, 3.77, 5.04, 5.8667, 8.091667, 9.991667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.24313726), Color(1, 1, 1, 0.54901963), Color(1, 1, 1, 0.79607844), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.59607846), Color(1, 1, 1, 0.59607846), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lquwl"]
+_data = {
+&"RESET": SubResource("Animation_h2yge"),
+&"get_ready": SubResource("Animation_1bvp3")
+}
 
 [node name="Main" type="Node2D" unique_id=1254064391]
+script = ExtResource("1_h2yge")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=452337505]
 
 [node name="HealthLabel" type="Label" parent="CanvasLayer" unique_id=1048944502]
 offset_left = 18.0
 offset_top = 21.0
-offset_right = 277.0
-offset_bottom = 115.0
-theme_override_font_sizes/font_size = 42
+offset_right = 439.0
+offset_bottom = 221.0
+theme_override_font_sizes/font_size = 91
 text = "Health: 3"
+
+[node name="GetReadyLabel" type="Label" parent="CanvasLayer" unique_id=286801650]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1920.0
+offset_bottom = 1069.0
+theme_override_font_sizes/font_size = 200
+text = "Get ready..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" unique_id=1287704417]
+libraries/ = SubResource("AnimationLibrary_lquwl")
+
+[node name="Get_ready" type="AudioStreamPlayer" parent="CanvasLayer" unique_id=2139482591]
+stream = ExtResource("2_1bvp3")
 
 [node name="Player" parent="." unique_id=1482051478 instance=ExtResource("1_0xm2m")]
 
 [node name="Mob" parent="." unique_id=1613022772 instance=ExtResource("2_h2yge")]
 position = Vector2(2, 0)
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=594263483]
+stream = ExtResource("5_lquwl")
+parameters/looping = true

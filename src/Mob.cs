@@ -8,11 +8,12 @@ public partial class Mob : RigidBody2D
     [Export] private AnimatedSprite2D _sprite;
     [Export] public float MoveSpeed = 100f;
 
-    public int Health = 5;
+    public int Health = 500;
     private float direction = 1f;
     private float moveTimer = 0f;
     private float shootTimer = 0f;
 
+    public bool CanMove = false;
     private RandomNumberGenerator rng = new();
     private bool _attacking = false;
     public override void _Ready()
@@ -29,6 +30,8 @@ public partial class Mob : RigidBody2D
 
      public override void _PhysicsProcess(double delta)
     {
+        if (!CanMove)
+        return;
         float d = (float)delta;
 
         // Move left/right
