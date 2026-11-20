@@ -7,11 +7,13 @@ public partial class Mob : RigidBody2D
     [Export] private Marker2D FirePoint;
     [Export] private AnimatedSprite2D _sprite;
     [Export] public float MoveSpeed = 100f;
+    [Export] public int MaxHealth = 500;
 
-    public int Health = 500;
+    private int _health;
     private float direction = 1f;
     private float moveTimer = 0f;
     private float shootTimer = 0f;
+    private ProgressBar _healthBar;
 
     public bool CanMove = false;
     private RandomNumberGenerator rng = new();
@@ -26,7 +28,13 @@ public partial class Mob : RigidBody2D
          _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
         _sprite.AnimationFinished += OnAnimationFinished;
-    }
+        
+        _health = MaxHealth;
+        _healthBar = GetNode<ProgressBar>("../CanvasLayer/BossHealthBar");
+        _healthBar.MaxValue = MaxHealth;
+        _healthBar.Value = _health;
+}
+    
 
      public override void _PhysicsProcess(double delta)
     {
@@ -101,12 +109,19 @@ public partial class Mob : RigidBody2D
     }
      public void TakeDamage(int amount)
     {
-        Health -= amount;
+        _health -= amount;
+        
+        _healthBar.Value = _health;
 
-        if (Health <= 0)
+        if (_health <= 0)
         {
-            QueueFree();
+            Die();
         }
+    }
+    public void Die()
+    {
+            _healthBar.Visible = false;
+            QueueFree();
     }
 
 }

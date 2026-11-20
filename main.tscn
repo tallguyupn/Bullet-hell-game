@@ -56,6 +56,14 @@ offset_bottom = 221.0
 theme_override_font_sizes/font_size = 91
 text = "Health: 3"
 
+[node name="BossHealthBar" type="ProgressBar" parent="CanvasLayer" unique_id=1883126947]
+offset_left = 1785.0
+offset_top = -13.0
+offset_right = 1789.0
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 99
+value = 100.0
+
 [node name="GetReadyLabel" type="Label" parent="CanvasLayer" unique_id=286801650]
 modulate = Color(1, 1, 1, 0)
 offset_right = 1920.0
